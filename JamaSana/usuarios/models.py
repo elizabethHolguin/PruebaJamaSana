@@ -1,6 +1,5 @@
 from django.db import models
-from models import Tarjeta
-
+from django.forms import ModelForm
 # Create your models here.
 
 class Cliente(models.Model):
@@ -11,7 +10,13 @@ class Cliente(models.Model):
     contraseña = models.CharField(max_length=200)
     direccion = models.CharField(max_length=350)
     fecha_nacimiento = models.DateField()
-    id_tarjeta = models.ForeignKey(Tarjeta, on_delete=models.CASCADE)
+    id_tarjeta = models.ForeignKey("seguridad.Tarjeta", on_delete=models.CASCADE)
+
+    class ClienteForm(ModelForm):
+        class Meta:
+            ordering = ["nombre","apellido"]
+            verbose_name = "Cliente"
+      
 
     def __str__(self):
         return self.nombre + ' - ' + self.apellido 
@@ -19,6 +24,12 @@ class Cliente(models.Model):
 class Administrador(models.Model):
     usuario = models.CharField(max_length=200)
     contraseña = models.CharField(max_length=200)
+
+    class AdministradorForm(ModelForm):
+        class Meta:
+            ordering = ["usuario"]
+            verbose_name = "Administrador"
+  
  
     def __str__(self):
         return self.usuario
@@ -26,6 +37,11 @@ class Administrador(models.Model):
 class Vendedor(models.Model):
     usuario = models.CharField(max_length=200)
     contraseña = models.CharField(max_length=200)
+
+    class VendedorForm(ModelForm):
+        class Meta:
+            ordering = ["usuario"]
+            verbose_name = "Vendedor"
 
     def __str__(self):
         return self.usuario

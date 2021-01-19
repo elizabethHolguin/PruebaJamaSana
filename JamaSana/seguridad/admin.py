@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Comidas, Categoria, Pedido, DetallePedido
+from .models import FormaDePago, Tarjeta, Factura, Iva
 # Register your models here.
 
 
-admin.site.register(Comidas)
-admin.site.register(Categoria)
-admin.site.register(Pedido)
-admin.site.register(DetallePedido)
+admin.site.register(FormaDePago)
+admin.site.register(Tarjeta)
+admin.site.register(Factura)
+admin.site.register(Iva)
